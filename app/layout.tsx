@@ -1,29 +1,25 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import "./globals.css"
-import { Providers } from "./providers"
-
-const inter = Inter({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "GradXP - Learn, Excel, Earn",
-  description: "A decentralized education platform powered by Web3 and yield farming",
-    generator: 'v0.dev'
-}
+import { WalletProvider } from "@/hooks/use-wallet"
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+      <body>
+        <WalletProvider>{children}</WalletProvider>
       </body>
     </html>
   )
+}
+
+import "./globals.css"
+
+export const metadata = {
+  generator: "v0.dev",
 }
 
 
