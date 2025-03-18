@@ -3,8 +3,6 @@
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
 import { ethers } from "ethers";
-import { Provider } from "ethers/providers";
-
 import { cn } from "@/lib/utils";
 import { Providers } from "@/app/providers";
 
@@ -371,7 +369,7 @@ async function sendTransaction() {
       // ...other transaction parameters...
     };
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = new ethers.providers.Web3Provider(window.ethereum as any); 
     await provider.send("eth_requestAccounts", []); // Request account access if needed
     const signer = provider.getSigner();
     const estimatedGas = await signer.estimateGas(transaction);
