@@ -3,8 +3,7 @@
 import * as React from "react";
 import * as RechartsPrimitive from "recharts";
 import { ethers } from "ethers";
-import { Provider } from "ethers/providers";
-
+import { Provider } from "ethers";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/app/providers";
 
