@@ -371,9 +371,14 @@ async function sendTransaction() {
       // ...other transaction parameters...
     };
 
-    const provider = new providers.Web3Provider(window.ethereum);
-    const estimatedGas = await provider.estimateGas(transaction);
-    const txResponse = await provider.sendTransaction(transaction);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    await provider.send("eth_requestAccounts", []); // Request account access if needed
+    const signer = provider.getSigner();
+    const estimatedGas = await signer.estimateGas(transaction);
+    const txResponse = await signer.sendTransaction({
+      ...transaction,
+      gasLimit: estimatedGas,
+    });
     await txResponse.wait();
   } catch (error) {
     console.error("Transaction failed:", error);
